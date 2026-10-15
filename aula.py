@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("Meu Aplicativo")
+st.title("Meu Primeiro Aplicativo")
 
 st.image("tec.png")
 
