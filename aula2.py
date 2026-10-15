@@ -289,7 +289,7 @@ st.html("""
 <div class="indicadores">
 
     <a class="indicador"
-       href="https://dinaldo.com.br"
+       href="https://arduino.cc"
        target="_blank"
        rel="noopener noreferrer">
        ⚡ TECNOLOGIA
@@ -303,7 +303,7 @@ st.html("""
     </a>
 
     <a class="indicador"
-       href="https://dinaldo.com.br"
+       href="https://ifpb.edu.br"
        target="_blank"
        rel="noopener noreferrer">
        🌐 INOVAÇÃO DIGITAL
