@@ -1,9 +1,8 @@
 import streamlit as st
-import textwrap
 from pathlib import Path
 
 # ==========================================
-# CONFIGURAÇÃO
+# CONFIGURAÇÃO DA PÁGINA
 # ==========================================
 st.set_page_config(
     page_title="Dinaldo Tech",
@@ -13,9 +12,9 @@ st.set_page_config(
 )
 
 # ==========================================
-# CSS MODERNO
+# CSS E ESTILO TECNOLÓGICO
 # ==========================================
-st.markdown("""
+css = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -38,7 +37,7 @@ header, footer, #MainMenu {
     padding-bottom: 2rem;
 }
 
-/* Animação de entrada */
+/* Entrada suave */
 @keyframes entrada {
     from {
         opacity: 0;
@@ -50,7 +49,7 @@ header, footer, #MainMenu {
     }
 }
 
-/* Animação do brilho */
+/* Brilho neon */
 @keyframes brilho {
     0%, 100% {
         box-shadow: 0 0 15px #00d9ff22;
@@ -60,7 +59,7 @@ header, footer, #MainMenu {
     }
 }
 
-/* Animação flutuante */
+/* Movimento da imagem */
 @keyframes flutuar {
     0%, 100% {
         transform: translateY(0);
@@ -72,8 +71,10 @@ header, footer, #MainMenu {
 
 /* Cartão principal */
 .hero {
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
+    width: 100%;
     text-align: center;
     padding: 50px 25px;
     border-radius: 25px;
@@ -91,7 +92,6 @@ header, footer, #MainMenu {
     border-radius: 30px;
     color: #00ffb3;
     background: #00ff9d10;
-    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 2px;
 }
@@ -105,7 +105,7 @@ header, footer, #MainMenu {
     background: linear-gradient(90deg, #ffffff, #00d9ff, #00ffb3);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 15px;
 }
 
@@ -122,13 +122,12 @@ header, footer, #MainMenu {
 /* Subtítulo */
 .subtitulo {
     color: #c0cee0;
-    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 1.9;
     font-weight: 300;
 }
 
-/* Botão principal */
+/* Botão principal do Streamlit */
 .stLinkButton > a {
     background: linear-gradient(100deg, #007cf0, #00d9ff, #00e6a0) !important;
     color: #04111e !important;
@@ -146,7 +145,7 @@ header, footer, #MainMenu {
     box-shadow: 0 0 30px #00d9ff77;
 }
 
-/* Indicadores */
+/* Navegação */
 .indicadores {
     display: flex;
     justify-content: center;
@@ -155,14 +154,13 @@ header, footer, #MainMenu {
     margin-top: 30px;
 }
 
-/* Cartões de navegação */
 .indicador {
     display: inline-block;
     padding: 12px 18px;
     border: 1px solid #00d9ff44;
     border-radius: 12px;
     background: #ffffff08;
-    color: #c0cee0;
+    color: #c0cee0 !important;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 1px;
@@ -191,7 +189,7 @@ header, footer, #MainMenu {
     color: #00d9ff;
 }
 
-/* Responsividade */
+/* Celulares */
 @media (max-width: 768px) {
     .hero {
         padding: 35px 15px;
@@ -219,13 +217,15 @@ header, footer, #MainMenu {
     }
 }
 </style>
-""", unsafe_allow_html=True)
+"""
 
+# Inserir CSS na página
+st.html(css)
 
 # ==========================================
 # CARTÃO PRINCIPAL
 # ==========================================
-html = """
+st.html("""
 <div class="hero">
 
     <div class="selo">
@@ -245,13 +245,7 @@ html = """
     </div>
 
 </div>
-"""
-
-st.markdown(
-    textwrap.dedent(html).strip(),
-    unsafe_allow_html=True
-)
-
+""")
 
 # ==========================================
 # IMAGEM
@@ -261,45 +255,37 @@ st.markdown("<br>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 1.2, 1])
 
 with col2:
-
     imagem = Path(__file__).parent / "tec.png"
 
     if imagem.exists():
-
         st.image(
             str(imagem),
             use_container_width=True
         )
-
     else:
-
         st.warning(
             "Imagem tec.png não encontrada. "
             "Coloque-a na mesma pasta do app.py."
         )
 
-
 # ==========================================
-# BOTÃO PRINCIPAL DO SITE
+# BOTÃO PRINCIPAL
 # ==========================================
 st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns([1, 1.2, 1])
 
 with col2:
-
     st.link_button(
         "🚀 ACESSAR MEU SITE",
         "https://dinaldo.com.br",
         use_container_width=True
     )
 
-
 # ==========================================
-# INDICADORES COM LINKS
+# INDICADORES CLICÁVEIS
 # ==========================================
-
-st.markdown("""
+st.html("""
 <div class="indicadores">
 
     <a class="indicador"
@@ -324,23 +310,14 @@ st.markdown("""
     </a>
 
 </div>
-""", unsafe_allow_html=True)
-
+""")
 
 # ==========================================
 # RODAPÉ
 # ==========================================
-rodape = """
+st.html("""
 <div class="rodape">
-
     DESENVOLVIDO COM <span>♥</span> E TECNOLOGIA<br>
-
     © 2026 DINALDO JORGE · TODOS OS DIREITOS RESERVADOS
-
 </div>
-"""
-
-st.markdown(
-    textwrap.dedent(rodape).strip(),
-    unsafe_allow_html=True
-)
+""")
