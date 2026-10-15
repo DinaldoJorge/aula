@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # ==========================================
-# CSS
+# CSS MODERNO
 # ==========================================
 st.markdown("""
 <style>
@@ -38,6 +38,7 @@ header, footer, #MainMenu {
     padding-bottom: 2rem;
 }
 
+/* Animação de entrada */
 @keyframes entrada {
     from {
         opacity: 0;
@@ -49,16 +50,27 @@ header, footer, #MainMenu {
     }
 }
 
+/* Animação do brilho */
 @keyframes brilho {
-    0%, 100% { box-shadow: 0 0 15px #00d9ff22; }
-    50% { box-shadow: 0 0 35px #00d9ff55; }
+    0%, 100% {
+        box-shadow: 0 0 15px #00d9ff22;
+    }
+    50% {
+        box-shadow: 0 0 35px #00d9ff55;
+    }
 }
 
+/* Animação flutuante */
 @keyframes flutuar {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
+/* Cartão principal */
 .hero {
     position: relative;
     overflow: hidden;
@@ -70,6 +82,7 @@ header, footer, #MainMenu {
     animation: entrada 1s ease-out, brilho 5s ease-in-out infinite;
 }
 
+/* Selo */
 .selo {
     display: inline-block;
     padding: 8px 17px;
@@ -83,6 +96,7 @@ header, footer, #MainMenu {
     letter-spacing: 2px;
 }
 
+/* Título */
 .titulo {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(30px, 5vw, 55px);
@@ -95,6 +109,7 @@ header, footer, #MainMenu {
     margin-bottom: 15px;
 }
 
+/* Linha neon */
 .linha-neon {
     width: 120px;
     height: 3px;
@@ -104,6 +119,7 @@ header, footer, #MainMenu {
     box-shadow: 0 0 18px #00d9ff99;
 }
 
+/* Subtítulo */
 .subtitulo {
     color: #c0cee0;
     font-family: 'Poppins', sans-serif;
@@ -112,10 +128,7 @@ header, footer, #MainMenu {
     font-weight: 300;
 }
 
-.imagem {
-    animation: flutuar 5s ease-in-out infinite;
-}
-
+/* Botão principal */
 .stLinkButton > a {
     background: linear-gradient(100deg, #007cf0, #00d9ff, #00e6a0) !important;
     color: #04111e !important;
@@ -133,6 +146,7 @@ header, footer, #MainMenu {
     box-shadow: 0 0 30px #00d9ff77;
 }
 
+/* Indicadores */
 .indicadores {
     display: flex;
     justify-content: center;
@@ -141,16 +155,30 @@ header, footer, #MainMenu {
     margin-top: 30px;
 }
 
+/* Cartões de navegação */
 .indicador {
-    padding: 11px 16px;
-    border: 1px solid #8bb8df22;
+    display: inline-block;
+    padding: 12px 18px;
+    border: 1px solid #00d9ff44;
     border-radius: 12px;
     background: #ffffff08;
     color: #c0cee0;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 1px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
 }
 
+.indicador:hover {
+    color: #00ffb3 !important;
+    border-color: #00ffb3;
+    background: #00ff9d12;
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px #00ff9d33;
+}
+
+/* Rodapé */
 .rodape {
     text-align: center;
     margin-top: 40px;
@@ -163,6 +191,7 @@ header, footer, #MainMenu {
     color: #00d9ff;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
     .hero {
         padding: 35px 15px;
@@ -175,8 +204,14 @@ header, footer, #MainMenu {
     .block-container {
         padding-top: 1rem;
     }
+
+    .indicador {
+        padding: 12px;
+        font-size: 11px;
+    }
 }
 
+/* Acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation: none !important;
@@ -186,22 +221,29 @@ header, footer, #MainMenu {
 </style>
 """, unsafe_allow_html=True)
 
+
 # ==========================================
 # CARTÃO PRINCIPAL
-# textwrap.dedent remove a indentação que
-# pode fazer o Markdown interpretar HTML
-# como um bloco de código.
 # ==========================================
 html = """
 <div class="hero">
-    <div class="selo">● SISTEMA ONLINE</div>
-    <div class="titulo">DINALDO TECH</div>
+
+    <div class="selo">
+        ● SISTEMA ONLINE
+    </div>
+
+    <div class="titulo">
+        DINALDO TECH
+    </div>
+
     <div class="linha-neon"></div>
+
     <div class="subtitulo">
         Tecnologia, programação e inovação.<br>
         Explore projetos, soluções digitais e conhecimentos<br>
         que conectam ideias ao futuro.
     </div>
+
 </div>
 """
 
@@ -209,6 +251,7 @@ st.markdown(
     textwrap.dedent(html).strip(),
     unsafe_allow_html=True
 )
+
 
 # ==========================================
 # IMAGEM
@@ -218,53 +261,82 @@ st.markdown("<br>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 1.2, 1])
 
 with col2:
+
     imagem = Path(__file__).parent / "tec.png"
 
     if imagem.exists():
-        st.image(str(imagem), use_container_width=True)
+
+        st.image(
+            str(imagem),
+            use_container_width=True
+        )
+
     else:
+
         st.warning(
             "Imagem tec.png não encontrada. "
             "Coloque-a na mesma pasta do app.py."
         )
 
+
 # ==========================================
-# BOTÃO DO SITE
+# BOTÃO PRINCIPAL DO SITE
 # ==========================================
 st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns([1, 1.2, 1])
 
 with col2:
+
     st.link_button(
         "🚀 ACESSAR MEU SITE",
         "https://dinaldo.com.br",
         use_container_width=True
     )
 
-# ==========================================
-# INDICADORES
-# ==========================================
-indicadores = """
-<div class="indicadores">
-    <div class="indicador">⚡ TECNOLOGIA</div>
-    <div class="indicador">💻 PROGRAMAÇÃO</div>
-    <div class="indicador">🌐 INOVAÇÃO DIGITAL</div>
-</div>
-"""
 
-st.markdown(
-    textwrap.dedent(indicadores).strip(),
-    unsafe_allow_html=True
-)
+# ==========================================
+# INDICADORES COM LINKS
+# ==========================================
+
+st.markdown("""
+<div class="indicadores">
+
+    <a class="indicador"
+       href="https://dinaldo.com.br"
+       target="_blank"
+       rel="noopener noreferrer">
+       ⚡ TECNOLOGIA
+    </a>
+
+    <a class="indicador"
+       href="https://sites.google.com/view/python2023ifpb/in%C3%ACcio"
+       target="_blank"
+       rel="noopener noreferrer">
+       💻 PROGRAMAÇÃO
+    </a>
+
+    <a class="indicador"
+       href="https://dinaldo.com.br"
+       target="_blank"
+       rel="noopener noreferrer">
+       🌐 INOVAÇÃO DIGITAL
+    </a>
+
+</div>
+""", unsafe_allow_html=True)
+
 
 # ==========================================
 # RODAPÉ
 # ==========================================
 rodape = """
 <div class="rodape">
+
     DESENVOLVIDO COM <span>♥</span> E TECNOLOGIA<br>
+
     © 2026 DINALDO JORGE · TODOS OS DIREITOS RESERVADOS
+
 </div>
 """
 
